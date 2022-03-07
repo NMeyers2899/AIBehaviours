@@ -98,6 +98,8 @@ public:
     template<typename T>
     T* getComponent();
 
+    virtual void onAddComponent(Component* comp);
+
 protected:
     const char* m_name;
 
