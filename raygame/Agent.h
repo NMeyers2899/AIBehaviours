@@ -1,6 +1,8 @@
 #pragma once
 #include "Actor.h"
+#include "DynamicArray.h"
 
+class SteeringComponent;
 class FleeBehaviour;
 class SeekBehaviour;
 class WanderBehaviour;
@@ -18,20 +20,20 @@ public:
 	void update(float deltaTime) override;
 	void onAddComponent(Component* comp) override;
 
-	float getForce() { return m_force; }
-	void setForce(float value) { m_force = value; }
+	float getMaxForce() { return m_maxForce; }
+	void setMaxForce(float value) { m_maxForce = value; }
+	MathLibrary::Vector2 getForce() { return m_force; }
+	void setForce(MathLibrary::Vector2 value) { m_force = value; }
 
+	MoveComponent* getMoveComponent() { return m_moveComponent; }
 
 	void setTarget(Actor* value);
 
 private:
-	Actor* m_target;
-	FleeBehaviour* m_fleeBehaviour;
-	SeekBehaviour* m_seekBehaviour;
-	WanderBehaviour* m_wanderBehaviour;
+	DynamicArray<SteeringComponent*> m_steeringComponents;
+	float m_maxForce;
 	MoveComponent* m_moveComponent;
 	SpriteComponent* m_spriteComponent;
-	float m_force;
-	float m_maxSpeed = 200;
+	MathLibrary::Vector2 m_force;
 };
 
