@@ -4,44 +4,32 @@
 #include "WanderBehavior.h"
 #include "MoveComponent.h"
 #include "SpriteComponent.h"
-
-Agent::Agent() : Actor(0, 0, "agent")
-{
-	m_target = nullptr;
-}
-
-Agent::Agent(float xPos, float yPos, Actor* target, float force) : Actor(xPos, yPos, "agent")
-{
-	m_target = target;
-	m_force = force;
-}
+#include "SteeringComponent.h"
 
 void Agent::start()
 {
 	Actor::start();
 
-	m_moveComponent = dynamic_cast<MoveComponent*>(addComponent(new MoveComponent()));
-	m_moveComponent->setMaxSpeed(200);
-	m_spriteComponent = dynamic_cast<SpriteComponent*>(addComponent(new SpriteComponent("SpriteComponent", "Images/enemy.png")));
-	m_fleeBehaviour = dynamic_cast<FleeBehaviour*>(addComponent(new FleeBehaviour(m_target, m_moveComponent, getForce())));
-	m_seekBehaviour = dynamic_cast<SeekBehaviour*>(addComponent(new SeekBehaviour(m_target, m_moveComponent, getForce())));
-	m_wanderBehaviour = dynamic_cast<WanderBehaviour*>(addComponent(new WanderBehaviour(m_moveComponent, getForce(), 10, 50)));
+	m_moveComponent = addComponent<MoveComponent>();
 }
 
 void Agent::update(float deltaTime)
 {
-	Actor::update(deltaTime);
+	// Get all force beind applied from steering behaviors.
+	for (int i = 0; i < m_steeringComponents.getLength(); i++)
+		m_force = m_force + m_steeringComponents[i]->calculateForce();
 
-	if (m_moveComponent->getVelocity().getMagnitude() > m_maxSpeed)
-		m_moveComponent->setVelocity(m_moveComponent->getVelocity().getNormalized() * m_maxSpeed);
+	// Clamp force if it exceeds the maximum scale.
+	if (m_force.getMagnitude() > getMaxForce())
+		m_force = m_force.getNormalized() * getMaxForce();
+
+	// Apply force to velocity.
+	getMoveComponent()->setVelocity(getMoveComponent()->getVelocity() + m_force * deltaTime);
 }
 
 void Agent::onAddComponent(Component* comp)
-{
-}
-
-void Agent::setTarget(Actor* value)
-{
-	m_target = value;
-	m_fleeBehaviour->setTarget(value);
+{ 
+	SteeringComponent* steeringComponent = dynamic_cast<SteeringComponent*>(comp);
+	if (steeringComponent)
+		m_steeringComponents.addItem(steeringComponent);
 }

@@ -68,6 +68,9 @@
     <ClCompile Include="Agent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SteeringComponent.cpp">
+      <Filter>Header Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -123,6 +126,9 @@
     </ClInclude>
     <ClInclude Include="Agent.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

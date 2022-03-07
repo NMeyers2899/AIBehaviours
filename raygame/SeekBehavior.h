@@ -1,20 +1,15 @@
 #pragma once
-#include "Component.h"
-#include <Vector2.h>
+#include "SteeringComponent.h"
 
 class MoveComponent;
 class Actor;
 
-class SeekBehaviour : public Component
+class SeekBehaviour : public SteeringComponent
 {
 public:
-	SeekBehaviour();
-	SeekBehaviour(Actor* target, MoveComponent* moveComponent, float force);
-	~SeekBehaviour() {};
+	void start() override;
 
-	void update(float deltaTime) override;
-
-	void setTarget(Actor* value) { m_target = value; }
+	MathLibrary::Vector2 calculateForce() override;
 
 private:
 	Actor* m_target;

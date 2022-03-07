@@ -1,6 +1,7 @@
 #pragma once
 #include "Actor.h"
 #include "DynamicArray.h"
+#include <Vector2.h>
 
 class SteeringComponent;
 class FleeBehaviour;
@@ -12,10 +13,6 @@ class SpriteComponent;
 class Agent : public Actor
 {
 public:
-	Agent();
-	Agent(float xPos, float yPos, Actor* m_target, float force);
-	~Agent() {};
-
 	void start() override;
 	void update(float deltaTime) override;
 	void onAddComponent(Component* comp) override;

@@ -98,6 +98,9 @@ public:
     template<typename T>
     T* getComponent();
 
+    /// <summary>
+    /// Called whenever a component is added to the actor.
+    /// </summary>
     virtual void onAddComponent(Component* comp);
 
 protected:

@@ -1,37 +1,19 @@
 #include "SeekBehavior.h"
 #include "MoveComponent.h"
 #include "Actor.h"
+#include "Transform2D.h"
 
-SeekBehaviour::SeekBehaviour()
+MathLibrary::Vector2 SeekBehaviour::calculateForce()
 {
-	m_moveComponent = new MoveComponent();
-
-	m_target = nullptr;
-}
-
-SeekBehaviour::SeekBehaviour(Actor* target, MoveComponent* moveComponent, float force)
-{
-	m_target = target;
-	m_moveComponent = moveComponent;
-	m_force = force;
-
-	m_currentVelocity = m_moveComponent->getVelocity();
-}
-
-void SeekBehaviour::update(float deltaTime)
-{
-	if (getOwner() && m_target)
+	if (getOwner() && getTarget())
 	{
-		m_desiredVelocity = (m_target->getTransform()->getWorldPosition() - getOwner()->getTransform()->getWorldPosition()).getNormalized() * m_force;
+		MathLibrary::Vector2 directionToTarget = getTarget()->getTransform()->getWorldPosition() - getTarget()->getTransform()->getWorldPosition();
 
-		m_steeringForce = m_desiredVelocity - m_currentVelocity;
+		MathLibrary::Vector2 desiredVelocity = directionToTarget.getNormalized() * getSteeringForce();
+		MathLibrary::Vector2 seekForce = desiredVelocity - getAgent()->getMoveComponent()->getVelocity();
 
-		m_currentVelocity = m_currentVelocity + (m_steeringForce * deltaTime);
-
-		MathLibrary::Vector2 newPosition = getOwner()->getTransform()->getWorldPosition();
-
-		newPosition = newPosition + (m_currentVelocity * deltaTime);
-
-		m_moveComponent->setVelocity(newPosition);
+		return seekForce;
 	}
+
+	return { 0, 0 };
 }

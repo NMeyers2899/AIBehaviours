@@ -1,10 +1,10 @@
 #pragma once
-#include "Component.h"
+#include "SteeringComponent.h"
 #include <Vector2.h>
 
 class MoveComponent;
 
-class WanderBehaviour : public Component
+class WanderBehaviour : public SteeringComponent
 {
 public:
 	WanderBehaviour() {};
