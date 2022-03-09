@@ -5,7 +5,7 @@
 #include <random>
 #include <time.h>
 
-WanderBehaviour::WanderBehaviour(float distance, float radius, float force) : SteeringComponent(nullptr, force)
+WanderBehavior::WanderBehavior(float distance, float radius, float force) : SteeringComponent(nullptr, force)
 {
 	m_force = force;
 	m_circleDistance = distance;
@@ -13,7 +13,7 @@ WanderBehaviour::WanderBehaviour(float distance, float radius, float force) : St
 	srand(time(NULL));
 }
 
-MathLibrary::Vector2 WanderBehaviour::calculateForce()
+MathLibrary::Vector2 WanderBehavior::calculateForce()
 {
 	// Find the agent's position and heading.
 	MathLibrary::Vector2 ownerPosition = getOwner()->getTransform()->getWorldPosition();

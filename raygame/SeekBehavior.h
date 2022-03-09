@@ -4,11 +4,9 @@
 class MoveComponent;
 class Actor;
 
-class SeekBehaviour : public SteeringComponent
+class SeekBehavior : public SteeringComponent
 {
 public:
-	void start() override;
-
 	MathLibrary::Vector2 calculateForce() override;
 
 private:

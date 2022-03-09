@@ -3,7 +3,7 @@
 #include "Actor.h"
 #include "Transform2D.h"
 
-MathLibrary::Vector2 SeekBehaviour::calculateForce()
+MathLibrary::Vector2 SeekBehavior::calculateForce()
 {
 	if (getOwner() && getTarget())
 	{

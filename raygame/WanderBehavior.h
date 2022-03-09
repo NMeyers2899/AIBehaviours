@@ -2,10 +2,10 @@
 #include "SteeringComponent.h"
 #include <Vector2.h>
 
-class WanderBehaviour : public SteeringComponent
+class WanderBehavior : public SteeringComponent
 {
 public:
-	WanderBehaviour(float distance, float radius, float force);
+	WanderBehavior(float distance, float radius, float force);
 
 	MathLibrary::Vector2 calculateForce() override;
 
