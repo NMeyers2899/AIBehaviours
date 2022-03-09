@@ -11,6 +11,7 @@ void MainScene::start()
 
 	Agent* agent1 = new Agent();
 	agent1->getTransform()->setScale({ 50, 50 });
+	agent1->setMaxForce(50);
 
 	addActor(player);
 	addActor(agent1);

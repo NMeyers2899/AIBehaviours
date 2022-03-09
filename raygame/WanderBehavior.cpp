@@ -5,37 +5,33 @@
 #include <random>
 #include <time.h>
 
-WanderBehaviour::WanderBehaviour(MoveComponent* moveComponenet, float force, float radius, float distance)
+WanderBehaviour::WanderBehaviour(float distance, float radius, float force) : SteeringComponent(nullptr, force)
 {
-	srand(time(0));
-
-	m_moveComponent = moveComponenet;
 	m_force = force;
-	m_radius = radius;
 	m_circleDistance = distance;
+
+	srand(time(NULL));
 }
 
-void WanderBehaviour::update(float deltaTime)
+MathLibrary::Vector2 WanderBehaviour::calculateForce()
 {
-	MathLibrary::Vector2 target = MathLibrary::Vector2((rand() % 200) - 100, (rand() % 200) - 100);
+	// Find the agent's position and heading.
+	MathLibrary::Vector2 ownerPosition = getOwner()->getTransform()->getWorldPosition();
+	MathLibrary::Vector2 heading = getAgent()->getMoveComponent()->getVelocity().getNormalized();
 
-	// Sets the target to be a point on the circle that surrounds the agent.
-	MathLibrary::Vector2 targetCircle = getOwner()->getTransform()->getWorldPosition() +
-		(getOwner()->getTransform()->getForward().getNormalized() * m_circleDistance);
+	// Find the circle's position in front of the agent.
+	m_circlePosition = ownerPosition + (heading * m_circleDistance);
 
-	target = (target.getNormalized() * m_radius) + targetCircle;
+	// Find two random points and then plot them on the circle.
+	float randNum = (rand() % 201);
 
-	m_desiredVelocity = (target -
-		getOwner()->getTransform()->getWorldPosition()) *
-		m_force;
+	MathLibrary::Vector2 randomDirection = MathLibrary::Vector2{cos(randNum), sin(randNum)} * m_radius;
 
-	m_steeringForce = m_desiredVelocity - m_currentVelocity;
+	m_target = randomDirection + m_circlePosition;
 
-	m_currentVelocity = m_currentVelocity + (m_steeringForce * deltaTime);
+	// Tell the agent to seek the point on the circle.
+	MathLibrary::Vector2 desiredVelocity = MathLibrary::Vector2::normalize(m_target - ownerPosition) * getSteeringForce();
+	MathLibrary::Vector2 wanderForce = desiredVelocity - getAgent()->getMoveComponent()->getVelocity();
 
-	MathLibrary::Vector2 newPosition = getOwner()->getTransform()->getWorldPosition();
-
-	newPosition = newPosition + (m_currentVelocity * deltaTime);
-
-	m_moveComponent->setVelocity(newPosition);
+	return wanderForce;
 }

@@ -13,10 +13,6 @@ public:
 
 private:
 	Actor* m_target;
-	MoveComponent* m_moveComponent;
-	MathLibrary::Vector2 m_desiredVelocity;
-	MathLibrary::Vector2 m_steeringForce;
-	MathLibrary::Vector2 m_currentVelocity;
 	float m_force;
 };
 

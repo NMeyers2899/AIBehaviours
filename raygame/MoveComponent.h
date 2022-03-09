@@ -25,9 +25,13 @@ public:
 	float getMaxSpeed() { return m_maxSpeed; }
 	void setMaxSpeed(float maxSpeed) { m_maxSpeed = maxSpeed; }
 
+	bool getUpdateFacing() { return m_updateFacing; }
+	void setUpdateFacing(bool value) { m_updateFacing = value; }
+
 	void update(float deltaTime) override;
 
 private:
 	float m_maxSpeed;
 	MathLibrary::Vector2 m_velocity;
+	bool m_updateFacing;
 };

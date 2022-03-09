@@ -9,9 +9,6 @@ public:
 	SteeringComponent() { m_target = nullptr; }
 	SteeringComponent(Actor* target, float steeringForce) { m_target = target; m_steeringForce = steeringForce; }
 
-	void start() override;
-	void update(float deltaTime) override;
-
 	virtual MathLibrary::Vector2 calculateForce() = 0;
 
 	float getSteeringForce() { return m_steeringForce; }

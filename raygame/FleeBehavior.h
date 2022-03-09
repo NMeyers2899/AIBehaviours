@@ -2,26 +2,14 @@
 #include "SteeringComponent.h"
 #include <Vector2.h>
 
-class MoveComponent;
-class Actor;
-
 class FleeBehaviour : public SteeringComponent
 {
 public:
-	FleeBehaviour();
-	FleeBehaviour(Actor* target, MoveComponent* moveComponent, float force);
-	~FleeBehaviour() {};
+	FleeBehaviour(float force);
 
-	void update(float deltaTime) override;
-
-	void setTarget(Actor* value) { m_target = value; }
+	MathLibrary::Vector2 calculateForce() override;
 
 private:
-	Actor* m_target;
-	MoveComponent* m_moveComponent;
-	MathLibrary::Vector2 m_desiredVelocity;
-	MathLibrary::Vector2 m_steeringForce;
-	MathLibrary::Vector2 m_currentVelocity;
 	float m_force;
 };
 

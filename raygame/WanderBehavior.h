@@ -2,23 +2,19 @@
 #include "SteeringComponent.h"
 #include <Vector2.h>
 
-class MoveComponent;
-
 class WanderBehaviour : public SteeringComponent
 {
 public:
-	WanderBehaviour() {};
-	WanderBehaviour(MoveComponent* moveComponenet, float force, float radius, float distance);
-	~WanderBehaviour() {};
+	WanderBehaviour(float distance, float radius, float force);
 
-	void update(float deltaTime) override;
+	MathLibrary::Vector2 calculateForce() override;
+
 private:
-	MoveComponent* m_moveComponent;
-	MathLibrary::Vector2 m_desiredVelocity;
-	MathLibrary::Vector2 m_steeringForce;
-	MathLibrary::Vector2 m_currentVelocity;
 	float m_force;
 	float m_radius;
-	float m_circleDistance;
+	float m_circleDistance = 0;
+
+	MathLibrary::Vector2 m_target;
+	MathLibrary::Vector2 m_circlePosition;
 };
 

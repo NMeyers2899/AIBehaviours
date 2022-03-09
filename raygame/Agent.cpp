@@ -11,6 +11,8 @@ void Agent::start()
 	Actor::start();
 
 	m_moveComponent = addComponent<MoveComponent>();
+	m_spriteComponent = addComponent<SpriteComponent>();
+	addComponent(new WanderBehaviour(50, 10, 50));
 }
 
 void Agent::update(float deltaTime)
