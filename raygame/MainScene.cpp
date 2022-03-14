@@ -15,7 +15,7 @@ void MainScene::start()
 	Agent* agent1 = new Agent();
 	agent1->getTransform()->setScale({ 50,50 });
 	agent1->setMaxForce(200);
-	agent1->addComponent(new SpriteComponent("SpriteBoi", "Images/enemy.png"));
+	agent1->addComponent(new SpriteComponent("SpriteComponent", "Images/enemy.png"));
 
 	WanderBehavior* comp = new WanderBehavior(1000, 200, 100);
 	agent1->addComponent(comp);
