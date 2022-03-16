@@ -12,6 +12,9 @@
     <Filter Include="Header Files\Components">
       <UniqueIdentifier>{dea8ce71-bcf8-4612-a205-8421a6a5ce3a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Decisions">
+      <UniqueIdentifier>{c6fcefd2-0747-4c2f-8ded-008fb110cb15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,6 +77,33 @@
     <ClCompile Include="StateMachineComponent.cpp">
       <Filter>Header Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="DecisionComponent.cpp">
+      <Filter>Header Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Decision.cpp">
+      <Filter>Header Files\Decisions</Filter>
+    </ClCompile>
+    <ClCompile Include="BooleanDecision.cpp">
+      <Filter>Header Files\Decisions</Filter>
+    </ClCompile>
+    <ClCompile Include="InRangeDecision.cpp">
+      <Filter>Header Files\Decisions</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IsAggressiveDecision.cpp">
+      <Filter>Header Files\Decisions</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleDecision.cpp">
+      <Filter>Header Files\Decisions</Filter>
+    </ClCompile>
+    <ClCompile Include="WanderDecision.cpp">
+      <Filter>Header Files\Decisions</Filter>
+    </ClCompile>
+    <ClCompile Include="SeekDecision.cpp">
+      <Filter>Header Files\Decisions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -135,6 +165,33 @@
     </ClInclude>
     <ClInclude Include="StateMachineComponent.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DecisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BooleanDecision.h">
+      <Filter>Header Files\Decisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Decision.h">
+      <Filter>Header Files\Decisions</Filter>
+    </ClInclude>
+    <ClInclude Include="InRangeDecision.h">
+      <Filter>Header Files\Decisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IsAggressiveDecision.h">
+      <Filter>Header Files\Decisions</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleDecision.h">
+      <Filter>Header Files\Decisions</Filter>
+    </ClInclude>
+    <ClInclude Include="SeekDecision.h">
+      <Filter>Header Files\Decisions</Filter>
+    </ClInclude>
+    <ClInclude Include="WanderDecision.h">
+      <Filter>Header Files\Decisions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

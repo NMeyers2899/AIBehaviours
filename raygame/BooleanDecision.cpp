@@ -2,8 +2,8 @@
 
 BooleanDecision::BooleanDecision(Decision* leftChild, Decision* rightChild)
 {
-	m_yes = leftChild;
-	m_no = rightChild;
+	m_no = leftChild;
+	m_yes = rightChild;
 }
 
 

@@ -6,15 +6,25 @@
 #include "SpriteComponent.h"
 #include "SteeringComponent.h"
 
+Agent::Agent(float x, float y, const char* name, float maxForce, float maxSpeed, Actor* target) : Actor(x, y, name)
+{
+	setMaxForce(maxForce);
+
+	m_moveComponent = addComponent<MoveComponent>();
+	m_moveComponent->setMaxSpeed(maxSpeed);
+}
+
 void Agent::start()
 {
 	Actor::start();
 
-	m_moveComponent = addComponent<MoveComponent>();
+	m_moveComponent->setUpdateFacing(true);
 }
 
 void Agent::update(float deltaTime)
 {
+	Actor::update(deltaTime);
+
 	// Get all force beind applied from steering behaviors.
 	for (int i = 0; i < m_steeringComponents.getLength(); i++)
 		m_force = m_force + m_steeringComponents[i]->calculateForce();

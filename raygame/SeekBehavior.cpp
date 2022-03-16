@@ -7,7 +7,7 @@ MathLibrary::Vector2 SeekBehavior::calculateForce()
 {
 	if (getOwner() && getTarget())
 	{
-		MathLibrary::Vector2 directionToTarget = getTarget()->getTransform()->getWorldPosition() - getTarget()->getTransform()->getWorldPosition();
+		MathLibrary::Vector2 directionToTarget = getTarget()->getTransform()->getWorldPosition() - getOwner()->getTransform()->getWorldPosition();
 
 		MathLibrary::Vector2 desiredVelocity = directionToTarget.getNormalized() * getSteeringForce();
 		MathLibrary::Vector2 seekForce = desiredVelocity - getAgent()->getMoveComponent()->getVelocity();
